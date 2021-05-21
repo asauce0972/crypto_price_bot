@@ -1,0 +1,22 @@
+{
+  "name": "crypto-price-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot that updates its nickname with the latest price of a cryptocurrency",
+  "main": "src/bot.js",
+  "scripts": {
+    "start": "node src/bot.js",
+    "dev": "nodemon src/bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Asauce0972",
+  "license": "MIT",
+  "dependencies": {
+    "@aragon/connect-thegraph": "^0.7.0",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "graphql-tag": "^2.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
