@@ -5,31 +5,31 @@ require('dotenv').config()
 
 const client = new Client()
 
-const RAYDIUM_URL = 'https://api.raydium.io/pairs'
-const COPE_USDC_PAIR = 'Cz1kUvHw98imKkrqqu95GQB9h1frY8RikxPojMwWKGXf'
+const API_URL = 'https://'
+const TOKEN_ADDRESS = ''
 
-var Cope = {
+var token = {
   Price: 0,
   Load: async function () {
-  let response = await fetch(RAYDIUM_URL);
+  let response = await fetch(API_URL);
     if (response.ok) {
       let pairs = await response.json();
       for (var i=0; i<pairs.length; i++){
-          if(pairs[i].lp_mint==COPE_USDC_PAIR){
+          if(pairs[i].lp_mint==TOKEN_ADDRESS){
               break;
           }
       }
-      Cope.Price = parseFloat(pairs[i].price).toFixed(2)
+      token.Price = parseFloat(pairs[i].price).toFixed(2)
       console.log(parseFloat(pairs[i].price).toFixed(2))
     }
   }
 }
 
 const priceUpdate = async () => {
-  Cope.Load()
+  token.Load()
   const server = await client.guilds.fetch(process.env.DISCORD_SERVER_ID)
   const bot = await server.members.fetch(client.user.id)
-  bot.setNickname(`COPE: $${Cope.price}`)
+  bot.setNickname(`Token: $${token.price}`)
 }
 
 client.on('ready', () => {
